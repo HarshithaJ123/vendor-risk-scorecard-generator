@@ -1,10 +1,11 @@
 from flask import Blueprint, request, jsonify
 from services.groq_service import get_ai_response
 from services.prompt_loader import load_prompt
+from services.recommend_service import generate_full_analysis
 
 recommend_bp = Blueprint('recommend', __name__)
 
-@recommend_bp.route('/ai/recommend', methods=['POST'])
+@recommend_bp.route('/recommend', methods=['POST'])
 def recommend():
     try:
         data = request.json
@@ -13,20 +14,10 @@ def recommend():
             return jsonify({"error": "Vendor input required"}), 400
 
         vendor = data['vendor']
-        risk_score = data.get('risk_score', 'Unknown')
+        risk_score = data.get('risk_score', 'Medium')
 
-        # ✅ Load prompt from file
-        template = load_prompt("recommend_prompt.txt")
-
-        # ✅ Fill dynamic values
-        prompt = template.format(
-            vendor=vendor,
-            risk_score=risk_score
-        )
-
-        # Call AI
-        result = get_ai_response(prompt)
-
+        #DAY 5 logic
+        result = generate_full_analysis(vendor,risk_score)
         return jsonify(result)
 
     except Exception as e:

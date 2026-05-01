@@ -144,5 +144,85 @@ json
 ✔ Tested successfully
 
 
+###  🚀 Day 5 – AI Integration & Combined Analysis API
+
+Day 5 focuses on integrating multiple AI responses into a single unified API.
+The system combines **risk analysis (Day 3)** and **recommendations (Day 4)** into a structured and production-ready response.
+
+## 🔗 API Endpoint
+
+**POST** `/ai/recommend`
+
+## 📥 Request Body
+
+```json
+{
+  "vendor": "Infosys",
+  "risk_score": "High"
+}
+
+## 📤 Response
+
+```json
+{
+  "risk_level": "High",
+  "reasons": [
+    "Vendor has experienced data breaches",
+    "Weak security infrastructure"
+  ],
+  "recommendations": [
+    {
+      "action_type": "Vendor Evaluation",
+      "description": "Review vendor compliance with security standards",
+      "priority": "High"
+    },
+    {
+      "action_type": "Risk Mitigation Strategy",
+      "description": "Develop a mitigation plan for identified risks",
+      "priority": "High"
+    }
+  ],
+  "generated_at": "2026-05-01T07:17:29"
+}
+
+## ⚙️ How It Works
+
+### Step 1: Risk Analysis (Day 3)
+
+* AI evaluates vendor risk
+* Returns:
+
+  * `risk_level`
+  * `reasons`
+
+### Step 2: Recommendations (Day 4)
+
+* AI generates mitigation actions
+* Returns:
+
+  * List of recommendations
+
+### Step 3: Combine Results (Day 5)
+
+* Merge both outputs
+* Add timestamp
+* Return final structured response
+
+## 🛡️ Error Handling
+
+* Handles invalid AI responses
+* Uses fallback if JSON parsing fails
+* Prevents API crashes using try/except
+
+## ✅ Status
+
+* ✔ AI integration completed
+* ✔ Combined API implemented
+* ✔ Error handling added
+* ✔ Tested using Postman
+
+
+
+
 
 

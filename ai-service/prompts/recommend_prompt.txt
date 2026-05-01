@@ -1,37 +1,20 @@
-prompt = f"""
-You are an AI Risk Advisor.
+STRICT RULES:
+- Return ONLY valid JSON
+- No explanation
+- No extra text
+- No markdown
+- No backticks
 
 Vendor: {vendor}
 Risk Score: {risk_score}
 
-Return ONLY valid JSON array.
-
-STRICT RULES:
-- Do NOT include explanation
-- Do NOT include text before or after JSON
-- Return EXACTLY 3 recommendations
-Ensure:
-- At least one High priority
-- one Medium
-- one Low
-- Use double quotes only
-
-FORMAT:
-[
-  {{
-    "action_type": "string",
-    "description": "string",
-    "priority": "High/Medium/Low"
-  }},
-  {{
-    "action_type": "string",
-    "description": "string",
-    "priority": "High/Medium/Low"
-  }},
-  {{
-    "action_type": "string",
-    "description": "string",
-    "priority": "High/Medium/Low"
-  }}
-]
-"""
+OUTPUT:
+{
+  "recommendations": [
+    {
+      "action_type": "Action",
+      "description": "Description",
+      "priority": "High"
+    }
+  ]
+}
