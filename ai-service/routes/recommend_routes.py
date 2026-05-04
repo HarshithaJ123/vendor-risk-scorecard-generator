@@ -16,6 +16,9 @@ def recommend():
         vendor = data['vendor']
         risk_score = data.get('risk_score', 'Medium')
 
+        # ✅ Day 5 logic
+        result = generate_full_analysis(vendor, risk_score)
+
         #DAY 5 logic
         result = generate_full_analysis(vendor,risk_score)
         return jsonify(result)

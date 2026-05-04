@@ -224,5 +224,64 @@ The system combines **risk analysis (Day 3)** and **recommendations (Day 4)** in
 
 
 
+###  Day 6 – AI Report Generation
+
+Implemented an AI-powered API to generate a structured Vendor Risk Report using LLM.
+The API combines risk analysis and recommendations into a clean JSON response.
+
+Create an endpoint that returns:
+- Title
+- Summary
+- Overview
+- Key Risk Items
+- Recommendations
+
+🔗 Endpoint
+POST /ai/generate-report
+
+📥 Request
+{
+  "vendor": "Infosys",
+  "risk_score": "High"
+}
+
+📤 Response
+{
+  "title": "Vendor Risk Report: Infosys",
+  "summary": "...",
+  "overview": "...",
+  "key_items": [...],
+  "recommendations": [...],
+  "generated_at": "timestamp"
+}
+
+✅ Status
+✔ Day 6 Completed
+✔ API working correctly
+
+
+📅 Day 7 – Redis AI Caching & Health Monitoring
+
+Implemented Redis-based caching to optimize AI response time and reduce repeated API calls. Added health monitoring endpoint to track system status and performance.
+
+⚙️ Workflow
+
+User Request
+   ↓
+Generate SHA256 Key
+   ↓
+Check Redis Cache
+   ↓
+If HIT → Return Cached Response
+Else → Call AI → Store in Redis (TTL 15 min) → Return Response
+
+📌 Output Example
+First request → CALLING AI
+Repeated request → CACHE HIT
+After TTL → CALLING AI
+
+✅ Status
+✔ Day 7 Completed
+✔ API working correctly
 
 

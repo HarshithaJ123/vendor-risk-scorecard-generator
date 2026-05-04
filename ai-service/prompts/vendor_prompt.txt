@@ -4,6 +4,7 @@ STRICT RULES:
 - No extra text
 - No markdown
 - No backticks
+You are an AI Risk Analyst.
 
 Vendor: {vendor}
 Risk Score: {risk_score}
@@ -11,5 +12,16 @@ Risk Score: {risk_score}
 OUTPUT:
 {
   "risk_level": "High",
+Task:
+1. Determine risk level (Low / Medium / High)
+2. Give 2 reasons
+
+STRICT RULES:
+- Output ONLY valid JSON
+- No explanation outside JSON
+
+FORMAT:
+{
+  "risk_level": "High/Medium/Low",
   "reasons": ["reason1", "reason2"]
 }

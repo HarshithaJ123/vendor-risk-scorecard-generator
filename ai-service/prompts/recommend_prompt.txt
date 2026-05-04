@@ -4,6 +4,7 @@ STRICT RULES:
 - No extra text
 - No markdown
 - No backticks
+You are an AI Risk Advisor.
 
 Vendor: {vendor}
 Risk Score: {risk_score}
@@ -18,3 +19,19 @@ OUTPUT:
     }
   ]
 }
+Return EXACTLY 3 recommendations.
+
+STRICT RULES:
+- Output ONLY valid JSON array
+- Do NOT include explanation
+- Do NOT include text before or after JSON
+- Ensure proper commas
+
+FORMAT:
+[
+  {
+    "action_type": "string",
+    "description": "string",
+    "priority": "High/Medium/Low"
+  }
+]

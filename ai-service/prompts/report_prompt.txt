@@ -1,0 +1,35 @@
+You are an AI Risk Analyst.
+
+Generate a vendor risk report in STRICT JSON format.
+
+Vendor: {vendor}
+Risk Score: {risk_score}
+
+IMPORTANT:
+- Return ONLY JSON
+- Do NOT add any explanation
+- Follow structure EXACTLY
+- Do NOT change keys
+- Maintain order
+
+Output format:
+{
+  "title": "string",
+  "summary": "string",
+  "overview": "string",
+  "key_items": [
+    {
+      "risk_category": "string",
+      "risk_description": "string",
+      "risk_impact": "Low/Medium/High",
+      "mitigation_status": "string"
+    }
+  ],
+  "recommendations": [
+    {
+      "recommendation": "string",
+      "priority": "Low/Medium/High",
+      "risk_category": "string"
+    }
+  ]
+}
