@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from services.report_service import generate_report
+from services.chroma_service import query_knowledge
 import re
 
 report_bp = Blueprint('report', __name__)
@@ -26,8 +27,13 @@ def report():
         if not vendor:
             return jsonify({"error": "Vendor required"}), 400
 
-        # ✅ Call service
-        result = generate_report(vendor, risk_score)
+        #new chromadb knowledge base query
+        knowledge = query_knowledge(risk_score)
+        result = {
+            "vendor": vendor,
+            "risk": risk_score,
+            "insights": knowledge
+        }
 
         # ✅ Ensure valid response
         if not result:

@@ -475,3 +475,15 @@ Model preloading significantly improves performance
 ✔ Application secured against major vulnerabilities
 ✔ Faster response due to model preloading
 ✔ Day 11 requirements successfully completed
+
+
+📅 Day 12 – AI Batch Testing & Knowledge Integration
+
+- Seeded ChromaDB with 10 domain-specific security knowledge documents
+- Integrated SentenceTransformer (all-MiniLM-L6-v2) for semantic search
+- Implemented API to fetch risk-based insights using knowledge retrieval
+- Created batch script to process 30 vendor demo records
+- Generated AI-driven outputs for each vendor
+- Saved results in demo_output.json for demo-ready usage
+
+✅ DAY 12 COMPLETED

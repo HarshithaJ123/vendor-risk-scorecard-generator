@@ -1,0 +1,242 @@
+[
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "Infosys"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "TCS"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Wipro"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "Accenture"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "IBM"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Capgemini"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "HCL"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "TechMahindra"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Oracle"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "Microsoft"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "Google"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Amazon"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "Zoho"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "Freshworks"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "SAP"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "Dell"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "HP"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Cisco"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "Intel"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "Nvidia"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Paytm"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "PhonePe"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "Flipkart"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Swiggy"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "Zomato"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "Uber"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Ola"
+    },
+    {
+        "insights": [
+            "Incident response plans must be defined.",
+            "High risk vendors require quarterly audits."
+        ],
+        "risk": "High",
+        "vendor": "Byjus"
+    },
+    {
+        "insights": [
+            "Logs must be monitored continuously.",
+            "Incident response plans must be defined."
+        ],
+        "risk": "Medium",
+        "vendor": "Unacademy"
+    },
+    {
+        "insights": [
+            "Regular security assessments are mandatory.",
+            "Vendor access should follow least privilege principle."
+        ],
+        "risk": "Low",
+        "vendor": "Coursera"
+    }
+]

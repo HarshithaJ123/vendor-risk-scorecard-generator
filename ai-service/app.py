@@ -5,6 +5,10 @@ from flask_talisman import Talisman
 from routes.report_routes import report_bp
 from routes.health_routes import health_bp
 from werkzeug.serving import WSGIRequestHandler
+from services.chroma_service import seed_documents
+from services.chroma_service import initialize_chroma
+
+initialize_chroma() # call only, do not redefine
 
 class CustomRequestHandler(WSGIRequestHandler):
     def version_string(self):
