@@ -2,57 +2,73 @@ from services.groq_service import get_ai_response
 from services.prompt_loader import load_prompt
 from services.cache_service import generate_key, get_cache, set_cache
 from datetime import datetime
+import time
+
+
+def fallback_response(vendor, risk_score):
+    return {
+        "title": "Vendor Risk Report",
+        "summary": "Fallback response due to AI error",
+        "overview": f"Unable to fetch AI response for {vendor}. Using fallback.",
+        "key_items": [],
+        "recommendations": ["Please retry later"],
+        "generated_at": datetime.now().isoformat(),
+        "is_fallback": True
+    }
+
 
 def generate_report(vendor, risk_score):
-    # Generate a cache key
+    start_time = time.time()
+
+    # 🔑 Generate cache key
     key = generate_key(vendor, risk_score)
 
-    # Try to get the report from cache
+    # ✅ Check cache
     cached_report = get_cache(key)
     if cached_report:
+        cached_report["response_time"] = round(time.time() - start_time, 3)
         return cached_report
 
     try:
+        # ✅ Load prompt
         prompt = load_prompt("report_prompt.txt") \
             .replace("{vendor}", vendor) \
             .replace("{risk_score}", risk_score)
 
+        # ✅ Call AI (Groq)
         result = get_ai_response(prompt, vendor, risk_score)
 
+        # ⚠️ Validate AI response
         if not isinstance(result, dict):
             result = {}
 
-        # Normalize fields (ensure lists/dicts)
+        # ✅ LIMIT TO 1 ITEM
         key_items = result.get("key_items", [])
-        if not isinstance(key_items, list):
-            key_items = []
+        if isinstance(key_items, list):
+         key_items = key_items[:1]
 
-        recs = result.get("recommendations", [])
-        if not isinstance(recs, list):
-            recs = []
+        recommendations = result.get("recommendations", [])
+        if isinstance(recommendations, list):
+         recommendations = recommendations[:1]
 
-        # 🔥 FINAL NORMALIZED RESPONSE (ORDER FIXED)
         response = {
-            "title": result.get("title", "Vendor Risk Report"),
-            "summary": result.get("summary", ""),
-            "overview": result.get("overview", ""),
-            "key_items": result.get("key_items", []),
-            "recommendations": result.get("recommendations", []),
-            "generated_at": datetime.now().isoformat()
-        }
+       "title": result.get("title", "Vendor Risk Report"),
+       "summary": result.get("summary", ""),
+       "overview": result.get("overview", ""),
+       "key_items": key_items,                 # ✅ fixed
+       "recommendations": recommendations,     # ✅ fixed
+       "generated_at": datetime.now().isoformat(),
+       "is_fallback": False
+}
 
-        # save to cache
-        set_cache(key, response)
-        return response
+    except Exception:
+        # ✅ Day 9 fallback
+        response = fallback_response(vendor, risk_score)
 
-    except Exception as e:
-        return {
-            "error": "Report generation failed",
-            "details": str(e),
-            "title": "",
-            "summary": "",
-            "overview": "",
-            "key_items": [],
-            "recommendations": [],
-            "generated_at": datetime.now().isoformat()
-        }
+    # ✅ Save cache (even fallback allowed)
+    set_cache(key, response)
+
+    # ⏱ Add performance time
+    response["response_time"] = round(time.time() - start_time, 2)
+
+    return response

@@ -20,6 +20,7 @@ OUTPUT:
   ]
 }
 Return EXACTLY 3 recommendations.
+Return EXACTLY 1 recommendation.
 
 STRICT RULES:
 - Output ONLY valid JSON array
