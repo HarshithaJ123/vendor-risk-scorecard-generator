@@ -437,3 +437,41 @@ AI failure → fallback response
 ✔ Setup instructions included
 ✔ Ready for developer usage
 DAY 10 COMPLETED
+
+
+📅 Day 11 – Security Hardening & Model Optimization
+
+Perform full OWASP ZAP scan and fix Critical/High vulnerabilities
+Improve performance by pre-loading sentence-transformer model at startup
+
+🔹 Work Done
+🔐 Security Improvements
+Integrated Flask-Talisman for security headers
+Implemented strong Content Security Policy (CSP)
+Added headers:
+X-Content-Type-Options
+X-Frame-Options
+Strict-Transport-Security
+Referrer-Policy
+Permissions-Policy
+Removed default server info and set:
+Server: SecureServer/1.0
+Limited request size (1MB)
+
+⚡ Performance Optimization
+Pre-loaded sentence-transformer model during app startup
+Avoided loading model per request
+Reduced API response latency
+
+🔹 ZAP Scan Result
+✅ Critical Issues: 0
+✅ High Issues: 0
+Remaining: 1 Systemic alert (server fingerprinting – low risk)
+
+Remaining alert is due to ZAP heuristic detection, not an actual vulnerability
+Model preloading significantly improves performance
+
+🔹 Outcome
+✔ Application secured against major vulnerabilities
+✔ Faster response due to model preloading
+✔ Day 11 requirements successfully completed

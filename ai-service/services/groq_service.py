@@ -5,6 +5,7 @@ import os
 import time
 from services.health_service import record_response_time
 from services.cache_service import get_cache, set_cache, generate_key
+from services.model_service import get_model
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,6 +26,10 @@ def fallback_response(vendor):
 
 def get_ai_response(prompt, vendor, risk_score):
     try:
+        # 🔥 STEP 0: Load model (ADD HERE)
+        model = get_model()
+        embedding = model.encode(prompt)
+
         # 🔑 Cache key
         cache_key = generate_key(vendor, risk_score)
 
