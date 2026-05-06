@@ -86,11 +86,13 @@ def analyze_vendor():
 
         print("RAW DESCRIBE:", repr(describe_res))
         print("RAW RECOMMEND:", repr(recommend_res))
-        print("PARSED:", describe_json)
+    
 
         # ✅ 5. Extract JSON safely
         describe_json = extract_json(describe_res)
         recommend_json = extract_json(recommend_res)
+        print("EXTRACTED DESCRIBE JSON:", describe_json)
+        print("EXTRACTED RECOMMEND JSON:", recommend_json)
 
         # ✅ 6. Final response (mentor format)
         return jsonify({
@@ -108,4 +110,92 @@ def analyze_vendor():
 
     except Exception as e:
         print("ERROR OCCURRED:", str(e))
+        return jsonify({"error": str(e)}), 500
+    
+    
+# DESCRIBE ENDPOINT
+
+@ai_routes.route("/describe", methods=["POST"])
+def describe_vendor():
+
+    try:
+        data = request.json
+
+        if not data:
+            return jsonify({"error": "Invalid input"}), 400
+
+        vendor = data.get("vendor")
+        risk_score = data.get("risk_score", "Medium")
+
+        if not vendor:
+            return jsonify({"error": "vendor is required"}), 400
+
+        prompt = load_prompt("vendor_prompt.txt")
+
+        final_prompt = prompt.format(
+            vendor=vendor,
+            risk_score=risk_score
+        )
+
+        ai_response = call_groq(final_prompt)
+
+        parsed = extract_json(ai_response)
+
+        return jsonify({
+            "vendor": vendor,
+            "risk_level": parsed.get("risk_level", risk_score),
+            "reasons": parsed.get("reasons", [
+                "Vendor has moderate operational risk"
+            ]),
+            "generated_at": datetime.utcnow().isoformat()
+        })
+
+    except Exception as e:
+        print("DESCRIBE ERROR:", str(e))
+        return jsonify({"error": str(e)}), 500
+
+
+# RECOMMEND ENDPOINT
+
+@ai_routes.route("/recommend", methods=["POST"])
+def recommend_vendor():
+
+    try:
+        data = request.json
+
+        if not data:
+            return jsonify({"error": "Invalid input"}), 400
+
+        vendor = data.get("vendor")
+        risk_score = data.get("risk_score", "Medium")
+
+        if not vendor:
+            return jsonify({"error": "vendor is required"}), 400
+
+        prompt = load_prompt("recommend_prompt.txt")
+
+        final_prompt = prompt.format(
+            vendor=vendor,
+            risk_score=risk_score
+        )
+
+        ai_response = call_groq(final_prompt)
+
+        parsed = extract_json(ai_response)
+
+        return jsonify({
+            "vendor": vendor,
+            "risk_score": risk_score,
+            "recommendations": parsed.get("recommendations", [
+                {
+                    "action_type": "Security",
+                    "description": "Perform regular audits",
+                    "priority": "Medium"
+                }
+            ]),
+            "generated_at": datetime.utcnow().isoformat()
+        })
+
+    except Exception as e:
+        print("RECOMMEND ERROR:", str(e))
         return jsonify({"error": str(e)}), 500

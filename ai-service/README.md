@@ -525,16 +525,149 @@ Python, Flask, Docker, PostgreSQL, Redis, Postman
 
 ✅ DAY 14 COMPLETED
 
-## DAY 15
-## Final Submission Status
 
-- Dockerized AI backend validated
-- API endpoints tested successfully
-- PostgreSQL and Redis containers verified
-- Environment configuration completed
-- Project prepared for final demo and submission
+
+### Day 15 — AI Service Integration & Endpoint Validation
+
+Implemented and validated all AI-powered backend endpoints for the Vendor Risk Assessment System using Flask, Groq AI, ChromaDB, and secure API practices.
+
+===Features Completed===
+
+1. AI Describe Endpoint
+
+Implemented:
+POST /ai/describe
+
+Purpose:
+Analyzes vendor risk details and returns:
+-risk level
+-risk reasons
+-AI-generated insights
+
+Sample Request:
+{
+  "vendor": "Infosys",
+  "risk_score": "High"
+}
+Sample Response:
+{
+  "vendor": "Infosys",
+  "risk_level": "Medium",
+  "reasons": [
+    "AI service temporarily unavailable",
+    "Fallback response generated"
+  ],
+  "generated_at": "2026-05-06T11:23:54.936719"
+}
+
+2. AI Recommendation Endpoint
+
+Implemented:
+POST /ai/recommend
+
+Purpose:
+-Generates AI-based security recommendations for vendors
+
+Sample Response:
+{
+  "vendor": "Infosys",
+  "risk_score": "High",
+  "recommendations": [
+    {
+      "action_type": "Security",
+      "description": "Retry AI request later",
+      "priority": "Medium"
+    }
+  ]
+}
+
+3. AI Analyze Endpoint
+
+Implemented:
+POST /ai/analyze
+
+Purpose:
+Combines
+-vendor description
+-risk analysis
+-AI recommendations into a single endpoint
+
+Sample Response:
+{
+  "generated_at": "2026-05-06T11:26:34.423783",
+  "reasons": [
+    "AI service temporarily unavailable",
+    "Fallback response generated"
+  ],
+  "recommendations": [
+    {
+      "action_type": "Security",
+      "description": "Retry AI request later",
+      "priority": "Medium"
+    }
+  ],
+  "risk_level": "Medium"
+}
+
+4. Generate Report Endpoint
+
+Implemented:
+POST /ai/generate-report
+
+Purpose:
+-Uses ChromaDB knowledge retrieval to generate vendor risk insights.
+
+Technologies Used:
+-ChromaDB
+
+Sample Response:
+{
+  "vendor": "Infosys",
+  "risk": "High",
+  "insights": [
+    "Incident response plans must be defined.",
+    "High risk vendors require quarterly audits."
+  ]
+}
+
+5. Health Monitoring Endpoint
+
+Implemented:
+GET /ai/health
+
+Purpose
+Monitors:
+  -model status
+  -uptime
+  -average response time
+
+Sample Response:
+{
+  "service": "AI Vendor Risk API",
+  "status": {
+   "model": "llama-3.1-8b-instant",
+   "status": "OK",
+    "avg_response_time_ms": 0
+  }
+}
+
+===Validation Completed===
+
+Successfully tested all endpoints in Postman:
+
+Endpoint	Status
+/ai/health	✅
+/ai/describe	✅
+/ai/recommend	✅
+/ai/analyze	✅
+/ai/generate-report	✅
 
 ✅ DAY 15 COMPLETED
+
+
+
+
+
 
 
 

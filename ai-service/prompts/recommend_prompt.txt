@@ -1,21 +1,28 @@
-You are an AI Risk Advisor.
+You are an AI Vendor Security Recommendation Assistant.
+
+Analyze the vendor risk details carefully.
 
 Vendor: {vendor}
 Risk Score: {risk_score}
 
-Return EXACTLY 1 recommendation.
+Your Task:
+Provide exactly 1 security recommendation.
 
-STRICT RULES:
-- Output ONLY valid JSON array
-- Do NOT include explanation
-- Do NOT include text before or after JSON
-- Ensure proper commas
+Rules:
+- Return ONLY valid JSON
+- No markdown
+- No explanation outside JSON
+- No extra text
+- Ensure proper JSON formatting
 
-FORMAT:
-[
-  {
-    "action_type": "string",
-    "description": "string",
-    "priority": "High/Medium/Low"
-  }
-]
+Return this exact format:
+
+{{
+  "recommendations": [
+    {{
+      "action_type": "Security",
+      "description": "Enable Multi-Factor Authentication",
+      "priority": "High"
+    }}
+  ]
+}}

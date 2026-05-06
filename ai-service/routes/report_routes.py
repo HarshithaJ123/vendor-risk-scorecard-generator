@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from services.report_service import generate_report
 from services.chroma_service import query_knowledge
 import re
 

@@ -1,26 +1,33 @@
 from flask import Flask, jsonify
 from flask_talisman import Talisman
+from werkzeug.serving import WSGIRequestHandler
 
-# 🔽 Import your route blueprints
+# IMPORT BLUEPRINTS
 from routes.report_routes import report_bp
 from routes.health_routes import health_bp
-from werkzeug.serving import WSGIRequestHandler
-from services.chroma_service import seed_documents
+from routes.ai_routes import ai_routes
+
+# IMPORT CHROMA INITIALIZER
 from services.chroma_service import initialize_chroma
 
-initialize_chroma() # call only, do not redefine
+# Initialize ChromaDB
+initialize_chroma()
 
+# CUSTOM SERVER HEADER
 class CustomRequestHandler(WSGIRequestHandler):
-    def version_string(self):
-        return "SecureServer/1.0"  # Custom Server header
 
+    def version_string(self):
+        return "SecureServer/1.0"
+
+
+# CREATE FLASK APP
 app = Flask(__name__)
 
-# ✅ Limit request size (ZAP fix)
+# BASIC SECURITY SETTINGS
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024  # 1MB
 app.config['JSON_SORT_KEYS'] = False
 
-# ✅ Strong Content Security Policy (fix CSP issue fully)
+# CONTENT SECURITY POLICY
 csp = {
     'default-src': "'self'",
     'script-src': "'self'",
@@ -34,7 +41,7 @@ csp = {
     'form-action': "'self'"
 }
 
-# ✅ Apply Talisman (main security layer)
+# APPLY TALISMAN SECURITY
 Talisman(
     app,
     content_security_policy=csp,
@@ -42,17 +49,17 @@ Talisman(
     frame_options='DENY'
 )
 
+# ADD SECURITY HEADERS
 @app.after_request
 def add_headers(response):
-    # Remove server header completely
+
+    # Remove default server header
     response.headers.pop('Server', None)
 
     # Add custom safe server header
-    if 'Server' in response.headers:
-     del response.headers['Server']
-     response.headers['Server'] = 'SecureServer/1.0'
+    response.headers['Server'] = 'SecureServer/1.0'
 
-    # Security headers (add ALL)
+    # Security headers
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-XSS-Protection'] = '1; mode=block'
@@ -62,14 +69,23 @@ def add_headers(response):
 
     return response
 
-# ✅ Root route
+# ROOT ROUTE
 @app.route('/')
 def home():
-    return jsonify({"message": "API running securely"}), 200
 
-# ✅ Register Blueprints
+    return jsonify({
+        "message": "AI Vendor Risk API running securely"
+    }), 200
+
+# REGISTER BLUEPRINTS
 app.register_blueprint(report_bp, url_prefix='/ai')
 app.register_blueprint(health_bp, url_prefix='/ai')
+app.register_blueprint(ai_routes, url_prefix='/ai')
 
+# RUN APPLICATION
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=5000)
+
+    app.run(
+        host="0.0.0.0",
+        port=5000
+    )
