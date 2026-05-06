@@ -71,10 +71,5 @@ def home():
 app.register_blueprint(report_bp, url_prefix='/ai')
 app.register_blueprint(health_bp, url_prefix='/ai')
 
-# ✅ Run server
 if __name__ == "__main__":
-    app.run(debug=False,request_handler=CustomRequestHandler)
-
-if __name__ == "__main__":
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0",port=5000)

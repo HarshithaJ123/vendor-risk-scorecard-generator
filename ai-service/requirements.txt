@@ -1,3 +1,18 @@
 Flask==2.3.3
 flask-cors==4.0.0
+flask-talisman==1.1.0
 requests==2.31.0
+
+chromadb==0.4.24
+
+torch==2.0.1+cpu
+torchvision==0.15.2+cpu
+torchaudio==2.0.2+cpu
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+sentence-transformers==2.2.2
+
+uvicorn==0.29.0
+groq
+werkzeug==2.3.4
