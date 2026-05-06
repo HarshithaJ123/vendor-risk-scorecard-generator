@@ -501,3 +501,29 @@ Model preloading significantly improves performance
 
 ✅ DAY 13 COMPLETED
 
+
+
+# Day 14 - AI Demo Validation
+
+Validated the Dockerized AI backend environment and tested all active API endpoints using Postman. Verified backend stability, response monitoring, and demo readiness.
+
+## Work Completed
+- Verified PostgreSQL and Redis containers
+- Successfully ran Flask AI backend
+- Tested active API endpoints
+- Monitored API response times
+- Captured demo screenshots
+- Confirmed Docker and backend stability
+
+## Endpoints Tested
+- GET /
+- GET /ai/health
+- POST /ai/generate-report
+
+## Technologies Used
+Python, Flask, Docker, PostgreSQL, Redis, Postman
+
+✅ DAY 14 COMPLETED
+
+
+
