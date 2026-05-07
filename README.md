@@ -1,54 +1,168 @@
-# Vendor Risk Scorecard Generator
+# AI Service for Vendor Risk Scorecard Generator
 
-# 🚀 Vendor Risk Scorecard Generator (Backend)
-
-## 📌 Overview
-This project contains the backend implementation of the **Vendor Risk Scorecard Generator** built using Spring Boot. It provides secure REST APIs for managing authentication, vendors, and scorecards with database integration and caching support.
+AI-powered vendor risk assessment system using Flask, Groq AI, and ChromaDB.
 
 ---
 
-## ✅ Features Implemented
+# Setup
 
-- Spring Boot project setup with a proper folder structure  
-- REST APIs for:
-  - Authentication
-  - Vendor management
-  - Scorecard operations  
-- JWT-based authentication and authorization  
-- PostgreSQL and Redis integration using Docker  
-- Flyway for database migration  
-- Data seeder for demo users, vendors, and scorecards  
-- Layered architecture:
-  - Controller
-  - Service
-  - Repository  
-- Global exception handling  
+1. Install dependencies
 
----
-
-## 🔐 Security
-
-- JWT-based authentication  
-- Role-based access control using `@PreAuthorize`  
-- Method-level security enabled using `@EnableMethodSecurity`  
-- Secured APIs require Bearer Token  
-
----
-
-## ⚡ Caching
-
-- Redis caching implemented using:
-  - `@Cacheable` for GET APIs  
-  - `@CacheEvict` for POST/PUT/DELETE APIs  
-
----
-
-## 🧪 Testing
-
-- Unit and controller test cases implemented  
-- Testing frameworks used:
-  - `@WebMvcTest`
-  - Mockito  
-- Test execution:
 ```bash
-mvn test
+pip install -r requirements.txt
+```
+
+2. Configure environment variables
+
+Create `.env` file:
+
+```env
+GROQ_API_KEY=your_api_key
+```
+
+3. Run application
+
+```bash
+python app.py
+```
+
+---
+
+# Tech Stack
+
+- Python
+- Flask
+- Groq API
+- ChromaDB
+- Docker
+- Postman
+
+---
+
+# Run Instructions
+
+### Local Run
+
+```bash
+python app.py
+```
+
+### Docker Run
+
+```bash
+docker build -t ai-service .
+docker run -p 5000:5000 ai-service
+```
+
+---
+
+# API Reference
+
+## POST /ai/describe
+
+### Input
+
+```json
+{
+  "vendor": "Infosys",
+  "risk_score": "High"
+}
+```
+
+### Output
+
+```json
+{
+  "risk_level": "Medium",
+  "reasons": [
+    "AI service temporarily unavailable"
+  ]
+}
+```
+
+---
+
+## POST /ai/recommend
+
+### Input
+
+```json
+{
+  "vendor": "Infosys",
+  "risk_score": "High"
+}
+```
+
+### Output
+
+```json
+{
+  "recommendations": [
+    {
+      "action_type": "Security",
+      "description": "Retry AI request later",
+      "priority": "Medium"
+    }
+  ]
+}
+```
+
+---
+
+## POST /ai/analyze
+
+### Output
+
+```json
+{
+  "risk_level": "Medium",
+  "reasons": [],
+  "recommendations": []
+}
+```
+
+---
+
+## POST /ai/generate-report
+
+### Output
+
+```json
+{
+  "vendor": "Infosys",
+  "risk": "High",
+  "insights": []
+}
+```
+
+---
+
+## GET /ai/health
+
+### Output
+
+```json
+{
+  "status": "OK",
+  "model": "llama-3.1-8b-instant"
+}
+```
+
+---
+
+# Features
+
+- AI vendor risk analysis
+- Recommendation generation
+- ChromaDB knowledge retrieval
+- Secure Flask APIs
+- Docker support
+- Health monitoring
+- Input sanitization
+- Response caching
+
+---
+
+# Final Outcome
+
+Successfully implemented a secure AI-powered Vendor Risk Scorecard backend with intelligent risk analysis and REST API integration.
